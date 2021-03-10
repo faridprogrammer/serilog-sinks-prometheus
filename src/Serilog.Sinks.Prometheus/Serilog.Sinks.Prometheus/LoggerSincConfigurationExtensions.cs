@@ -4,9 +4,9 @@ namespace Serilog.Sinks.Prometheus
 {
 	public  static class LoggerSincConfigurationExtensions
 	{
-		public static LoggerConfiguration Prometheus(this LoggerSinkConfiguration sinkConfiguration, string counterNameTemplate, string counterDescription)
+		public static LoggerConfiguration Prometheus(this LoggerSinkConfiguration sinkConfiguration)
 		{
-			return sinkConfiguration.Sink(new PrometheusEventSink(counterNameTemplate, counterDescription));
+			return sinkConfiguration.Sink(new PrometheusLogLevelEventSink());
 		}
 	}
 }

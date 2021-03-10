@@ -1,12 +1,15 @@
 # Serilog.Sinks.Prometheus
-A Serilog sink that writes log events to the Prometheus.
+A Serilog sink that writes log events to the Prometheus. 
+
+`LogLevel` properties as Labels
 
 ## Usage
 
 ```c#
 Log.Logger = new LoggerConfiguration()
-	.WriteTo.Prometheus("events_{0}", "Total count events of level {0}")
+	.Enrich.WithProperty("ApplicationName", "TestApplication")
+	.Enrich.WithProperty("SourceContext", "TestContext")
+	.WriteTo.Prometheus()
 	.CreateLogger();
-```
 
-This will create prometheus counters with name "events_{Event.LogLevel}" and description "Total count events of level {Event.LogLevel}" containing total count of appropriate events.
+```
